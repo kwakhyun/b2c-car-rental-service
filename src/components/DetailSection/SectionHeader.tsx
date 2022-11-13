@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { flexBox } from '../../styles/mixin';
 
 type SectionHeaderProps = {

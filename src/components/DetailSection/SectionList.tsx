@@ -7,11 +7,11 @@ type SectionsValues = {
 
 type SectionListProps = {
   sections: SectionsValues[];
-  renderSectionHeader: (section: any) => JSX.Element;
+  renderSectionHeader: (section: { title: string }) => JSX.Element;
   renderItem: (item: any) => JSX.Element;
 };
 
-function SectionList({ sections, renderSectionHeader, renderItem }: SectionListProps) {
+export default function SectionList({ sections, renderSectionHeader, renderItem }: SectionListProps) {
   return (
     <>
       {sections?.map((section) => (
@@ -25,5 +25,3 @@ function SectionList({ sections, renderSectionHeader, renderItem }: SectionListP
     </>
   );
 }
-
-export default SectionList;

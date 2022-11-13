@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
+
 import { flexBox } from '../../styles/mixin';
 
 type HeaderProps = {

@@ -1,4 +1,5 @@
 import styled, { FlattenInterpolation, ThemeProps } from 'styled-components';
+
 import { positionCenter, responsive } from '../../styles/mixin';
 
 type ContainerProps = {

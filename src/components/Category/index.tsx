@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
+
+import TagLarge from './TagLarge';
+
 import { flexBox } from '../../styles/mixin';
 import { VehicleSegment } from '../../types';
 import { segmentCategory } from '../../utils/const';
-import TagLarge from './TagLarge';
 
 type CategoryProps = {
   setSearchParams: (nextInit?: Record<string, string | string[]>) => void;

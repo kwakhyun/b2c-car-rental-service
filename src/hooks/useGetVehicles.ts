@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { VehicleBasic, VehicleFuelType, VehicleSegment } from '../types';
 import { api } from '../api';
 
