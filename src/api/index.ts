@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { Car } from '../types';
 
 export const api = axios.create({
-  baseURL: 'https://preonboarding.platdev.net/api',
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 api.interceptors.request.use(
@@ -14,18 +13,3 @@ api.interceptors.response.use(
   (config) => config,
   (error) => error.response
 );
-
-export const carAPI = {
-  getCarList: async (type: string) => {
-    if (type === 'ALL') {
-      const { data } = await api.get('/cars');
-      return data.payload;
-    }
-    const { data } = await api.get(`/cars?fuelType=ev&segment=${type}`);
-    return data.payload;
-  },
-  getCarDetail: async (id: number) => {
-    const { data } = await api.get(`/cars`);
-    return data?.payload.filter((item: Car) => item.id === Number(id))[0];
-  },
-};

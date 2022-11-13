@@ -1,31 +1,3 @@
-export interface Car {
-  id: number;
-  amount: number;
-  attribute: Attribute;
-  startDate: Date;
-  createdAt: Date;
-  insurance: Insurance[];
-  additionalProducts: AdditionalProducts[];
-}
-
-export interface Attribute {
-  brand: string;
-  name: string;
-  segment: string;
-  fuelType: string;
-  imageUrl: string;
-}
-
-export interface Insurance {
-  name: string;
-  description: string;
-}
-
-export interface AdditionalProducts {
-  name: string;
-  amount: number;
-}
-
 export type VehicleBasic = {
   id: number;
   startDate: Date;

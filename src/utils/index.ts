@@ -1,3 +1,11 @@
+import { VehicleBasic } from '../types';
+import { day, fuelType, segment } from './const';
+
+export const parseDate = (date: Date) => {
+  const newDate = new Date(date);
+  return `${newDate.getMonth() + 1}월 ${newDate.getDate()}일 (${day[newDate.getDay()]})`;
+};
+
 export const getSegment = (searchParams: URLSearchParams) => {
   switch (searchParams.get('segment')) {
     case 'SUV':
@@ -12,6 +20,45 @@ export const getSegment = (searchParams: URLSearchParams) => {
       return '';
   }
 };
+
+export const getVehicleDetailSections = (vehicle: VehicleBasic) => [
+  {
+    title: '차량정보',
+    data: [
+      {
+        item: '차종',
+        key: '차종',
+        content: segment[vehicle?.attribute?.segment],
+      },
+      {
+        item: '연료',
+        key: '연료',
+        content: fuelType[vehicle?.attribute?.fuelType],
+      },
+      {
+        item: '이용 가능일',
+        key: '이용 가능일',
+        content: `${parseDate(vehicle?.startDate)} 부터`,
+      },
+    ],
+  },
+  {
+    title: '보험',
+    data: vehicle?.insurance?.map((i) => ({
+      item: i.name,
+      key: i.name,
+      content: i.description,
+    })),
+  },
+  {
+    title: '추가상품',
+    data: vehicle?.additionalProducts?.map((p) => ({
+      item: p.name,
+      key: p.name,
+      content: `월 ${p.amount.toLocaleString()} 원`,
+    })),
+  },
+];
 
 export const convertSegment = (name: string) => {
   switch (name) {

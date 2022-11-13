@@ -1,13 +1,15 @@
 import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import CarItem from '../../components/CarItem';
+
+import CarItem from '../../components/VehicleItem';
 import Category from '../../components/Category';
 import Container from '../../components/Container';
 import Header from '../../components/Header';
+
 import { useGetVehicles } from '../../hooks/useGetVehicles';
 import { flexBox } from '../../styles/mixin';
-import { getSegment } from '../../utils/convertValue';
+import { getSegment } from '../../utils';
 
 export default function Home() {
   const { isLoading, vehicles, getVehicles } = useGetVehicles();
@@ -26,7 +28,7 @@ export default function Home() {
 
       {isLoading && <StyledNotice>불러오는 중</StyledNotice>}
 
-      {!isLoading && vehicles?.map((vehicle) => <CarItem key={vehicle.id} car={vehicle} />)}
+      {!isLoading && vehicles?.map((vehicle) => <CarItem key={vehicle.id} vehicle={vehicle} />)}
 
       {!isLoading && !vehicles?.length && <StyledNotice>차량이 없습니다.</StyledNotice>}
     </Container>

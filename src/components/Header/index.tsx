@@ -1,47 +1,46 @@
-import React from 'react';
-import { BiArrowBack } from 'react-icons/bi';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { COLOR, FONT_SIZE } from '../../styles/constants';
+import { FiArrowLeft } from 'react-icons/fi';
+import { flexBox } from '../../styles/mixin';
 
-export default function Header({ title, isBack = false }: { title: string; isBack?: boolean }) {
+type HeaderProps = {
+  hasBackButton?: boolean;
+  title: string;
+};
+
+export default function Header({ hasBackButton = false, title }: HeaderProps) {
   const navigate = useNavigate();
-  const handleClickBack = () => {
-    navigate(-1);
-  };
+
+  const handleClick = () => navigate('/');
 
   return (
     <StyledHeader>
-      {isBack && (
-        <StyledBackButton onClick={handleClickBack}>
-          <BiArrowBack />
-        </StyledBackButton>
-      )}
+      <StyledEdge hasPointer>{hasBackButton && <FiArrowLeft onClick={handleClick} />}</StyledEdge>
+
       {title}
+      <StyledEdge />
     </StyledHeader>
   );
 }
 
 const StyledHeader = styled.header`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 2px solid ${COLOR.BLACK};
-  padding: 16px;
-  font-size: ${FONT_SIZE.LARGE};
+  ${flexBox('row', 'space-between')}
+  width: 100%;
+  height: 60px;
+  padding: 0 ${({ theme }) => theme.paddingHorizontal};
+  border-bottom: 1px solid ${({ theme }) => theme.black};
+  font-size: 17px;
   font-weight: 600;
-  text-align: center;
 `;
 
-const StyledBackButton = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 54px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+const StyledEdge = styled.div<{ hasPointer?: boolean }>`
+  ${flexBox()};
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+
+  > svg {
+    transform: translateX(-4px);
+    cursor: ${({ hasPointer }) => (hasPointer ? 'pointer' : 'auto')};
+  }
 `;

@@ -1,23 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/GlobalStyle';
 import App from './App';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-    },
-  },
-});
+import { colors, padding } from './styles/theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <QueryClientProvider client={queryClient}>
-    <React.StrictMode>
-      <GlobalStyle />
+  <React.StrictMode>
+    <GlobalStyle />
+    <ThemeProvider theme={{ ...colors, ...padding }}>
       <App />
-    </React.StrictMode>
-  </QueryClientProvider>
+    </ThemeProvider>
+  </React.StrictMode>
 );
